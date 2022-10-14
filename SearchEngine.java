@@ -10,9 +10,6 @@ class Handler implements URLHandler {
     ArrayList<String> searched = new ArrayList<String>();
 
     public String handleRequest(URI url) {
-
-        strings.clear();
-        searched.clear();
         
         if (url.getPath().equals("/")) {
             return String.format("Search Engine!");
@@ -27,10 +24,11 @@ class Handler implements URLHandler {
                 }
             }
             if (url.getPath().contains("/search")) {
+                searched.clear();
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
                     for (int i = 0; i < strings.size(); i++) {
-                        if (strings.get(i).contains(parameters[1])) {
+                    if (strings.get(i).contains(parameters[1])) {
                             searched.add(strings.get(i));
                         }
                     }
